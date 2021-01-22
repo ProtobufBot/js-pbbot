@@ -11,7 +11,7 @@ EventHandler.handleDisconnect = async (bot) => {
 }
 
 EventHandler.handlePrivateMessage = async (bot, event) => {
-  let rawMsg = event.rawMsg
+  let rawMsg = event.rawMessage
   let userId = event.userId
   console.log(`收到私聊消息，发送者: ${userId.toString()}，内容: ${rawMsg}`)
   let msg = Msg.builder().text("hello world")
