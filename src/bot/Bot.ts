@@ -99,7 +99,10 @@ export class Bot {
     })
   }
 
-  async sendPrivateMessage(userId: Long, msg: Msg, autoEscape: boolean = true): Promise<ISendPrivateMsgResp | null> {
+  async sendPrivateMessage(userId: Long, msg: string | Msg, autoEscape: boolean = true): Promise<ISendPrivateMsgResp | null> {
+    if (typeof msg == 'string') {
+      msg = Msg.builder().text(msg)
+    }
     return await this.sendFrameAndWait({
       frameType: FrameType.TSendPrivateMsgReq,
       sendPrivateMsgReq: {
@@ -112,7 +115,10 @@ export class Bot {
       .catch(() => null)
   }
 
-  async sendGroupMessage(groupId: Long, msg: Msg, autoEscape: boolean = true): Promise<ISendGroupMsgResp | null> {
+  async sendGroupMessage(groupId: Long, msg: string | Msg, autoEscape: boolean = true): Promise<ISendGroupMsgResp | null> {
+    if (typeof msg == 'string') {
+      msg = Msg.builder().text(msg)
+    }
     return await this.sendFrameAndWait({
       frameType: FrameType.TSendGroupMsgReq,
       sendGroupMsgReq: {

@@ -4,7 +4,7 @@ import {Bot} from "../bot/Bot";
 import {EventHandler} from "../bot/EventHandler";
 
 
-export function createBotWsServer(port: number) {
+export function createBotServer(port: number) {
   let wsServer = new Websocket.Server({port})
   wsServer.on("connection", async (session, req) => {
     let xSelfId = req.headers["x-self-id"] as string
