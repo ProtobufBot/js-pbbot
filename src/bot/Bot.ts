@@ -4,7 +4,6 @@ import LRUCache from 'lru-cache'
 import {EventHandler} from "./EventHandler";
 import {Msg} from "../util/Msg";
 import {IdGenerator} from "../util/IdGenerator";
-import WaitingFrame from "./WaitingFrame";
 import {onebot} from "../proto/proto";
 import Frame = onebot.Frame;
 import IFrame = onebot.IFrame;
@@ -29,6 +28,12 @@ import IGetGroupInfoResp = onebot.IGetGroupInfoResp;
 import IGetGroupMemberInfoResp = onebot.IGetGroupMemberInfoResp;
 import IGetGroupMemberListResp = onebot.IGetGroupMemberListResp;
 import {toLong} from "../util/convertLong";
+
+interface WaitingFrame {
+  resolve: (value: IFrame | PromiseLike<IFrame>) => void
+  reject: (reason?: any) => void
+  echo: string
+}
 
 export class Bot {
   botId: Long
