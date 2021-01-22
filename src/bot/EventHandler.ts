@@ -1,4 +1,4 @@
-import Bot from "./Bot";
+import {Bot} from "./Bot";
 import {onebot} from "../proto/proto";
 import IGroupMessageEvent = onebot.IGroupMessageEvent;
 import IPrivateMessageEvent = onebot.IPrivateMessageEvent;
@@ -14,7 +14,7 @@ import IFriendRequestEvent = onebot.IFriendRequestEvent;
 import IGroupRequestEvent = onebot.IGroupRequestEvent;
 
 
-export default class EventHandler {
+export class EventHandler {
 
   static async handleConnect(bot: Bot) {
 

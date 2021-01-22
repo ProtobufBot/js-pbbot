@@ -1,10 +1,10 @@
 import * as Websocket from 'ws'
 import Long from "long";
-import Bot from "../bot/Bot";
-import EventHandler from "../bot/EventHandler";
+import {Bot} from "../bot/Bot";
+import {EventHandler} from "../bot/EventHandler";
 
 
-export default function createBotWsServer(port: number) {
+export function createBotWsServer(port: number) {
   let wsServer = new Websocket.Server({port})
   wsServer.on("connection", async (session, req) => {
     let xSelfId = req.headers["x-self-id"] as string

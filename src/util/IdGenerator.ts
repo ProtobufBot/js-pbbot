@@ -1,4 +1,4 @@
-export default class IdGenerator {
+export class IdGenerator {
   static globalId = 0;
 
   static generateId(): number {

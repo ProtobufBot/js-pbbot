@@ -1,9 +1,9 @@
 import Long from "long";
-import Bot from "../bot/Bot";
+import {Bot} from "../bot/Bot";
 import {onebot} from "../proto/proto";
 import Message = onebot.Message;
 
-export default class Msg {
+export class Msg {
   public messageList: Message[]
 
   constructor() {

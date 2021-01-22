@@ -1,11 +1,4 @@
-import EventHandler from "./bot/EventHandler";
-import Msg from "./util/Msg";
-import createBotWsServer from "./server/BotWsServer";
-import Bot from "./bot/Bot";
-
-export {
-  Bot,
-  EventHandler,
-  createBotWsServer,
-  Msg,
-}
+export {EventHandler} from "./bot/EventHandler";
+export {Msg} from "./util/Msg";
+export {createBotWsServer} from "./server/BotWsServer";
+export {Bot} from "./bot/Bot";

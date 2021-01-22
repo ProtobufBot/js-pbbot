@@ -1,9 +1,9 @@
 import Long from "long";
 import WebSocket from "ws";
 import LRUCache from 'lru-cache'
-import EventHandler from "./EventHandler";
-import Msg from "../util/Msg";
-import IdGenerator from "../util/IdGenerator";
+import {EventHandler} from "./EventHandler";
+import {Msg} from "../util/Msg";
+import {IdGenerator} from "../util/IdGenerator";
 import WaitingFrame from "./WaitingFrame";
 import {onebot} from "../proto/proto";
 import Frame = onebot.Frame;
@@ -29,7 +29,7 @@ import IGetGroupInfoResp = onebot.IGetGroupInfoResp;
 import IGetGroupMemberInfoResp = onebot.IGetGroupMemberInfoResp;
 import IGetGroupMemberListResp = onebot.IGetGroupMemberListResp;
 
-export default class Bot {
+export class Bot {
   botId: Long
   session: WebSocket
   waitingFrames: LRUCache<string, WaitingFrame>
