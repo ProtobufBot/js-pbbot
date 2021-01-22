@@ -2,6 +2,7 @@ import Long from "long";
 import {Bot} from "../bot/Bot";
 import {onebot} from "../proto/proto";
 import Message = onebot.Message;
+import {toLong} from "./convertLong";
 
 export class Msg {
   public messageList: Message[]
@@ -24,11 +25,11 @@ export class Msg {
     return this
   }
 
-  at(qq: Long): Msg {
+  at(qq: Long | string | number): Msg {
     this.messageList.push(new Message({
       type: "at",
       data: {
-        "qq": qq.toString()
+        "qq": toLong(qq).toString()
       }
     }))
     return this
@@ -54,13 +55,13 @@ export class Msg {
     return this
   }
 
-  sendToGroup(bot: Bot, groupId: Long, autoEscape: boolean = true): Msg {
-    bot.sendGroupMessage(groupId, this, autoEscape)
+  sendToGroup(bot: Bot, groupId: Long | string | number, autoEscape: boolean = true): Msg {
+    bot.sendGroupMessage(toLong(groupId), this, autoEscape)
     return this
   }
 
-  sendToFriend(bot: Bot, userId: Long, autoEscape: boolean = true): Msg {
-    bot.sendPrivateMessage(userId, this, autoEscape)
+  sendToFriend(bot: Bot, userId: Long | string | number, autoEscape: boolean = true): Msg {
+    bot.sendPrivateMessage(toLong(userId), this, autoEscape)
     return this
   }
 }

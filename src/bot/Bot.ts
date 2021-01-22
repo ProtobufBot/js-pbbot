@@ -28,6 +28,7 @@ import IGetGroupListResp = onebot.IGetGroupListResp;
 import IGetGroupInfoResp = onebot.IGetGroupInfoResp;
 import IGetGroupMemberInfoResp = onebot.IGetGroupMemberInfoResp;
 import IGetGroupMemberListResp = onebot.IGetGroupMemberListResp;
+import {toLong} from "../util/convertLong";
 
 export class Bot {
   botId: Long
@@ -99,14 +100,14 @@ export class Bot {
     })
   }
 
-  async sendPrivateMessage(userId: Long, msg: string | Msg, autoEscape: boolean = true): Promise<ISendPrivateMsgResp | null> {
+  async sendPrivateMessage(userId: Long | string | number, msg: string | Msg, autoEscape: boolean = true): Promise<ISendPrivateMsgResp | null> {
     if (typeof msg == 'string') {
       msg = Msg.builder().text(msg)
     }
     return await this.sendFrameAndWait({
       frameType: FrameType.TSendPrivateMsgReq,
       sendPrivateMsgReq: {
-        userId: userId,
+        userId: toLong(userId),
         message: msg.messageList,
         autoEscape: autoEscape,
       }
@@ -115,14 +116,14 @@ export class Bot {
       .catch(() => null)
   }
 
-  async sendGroupMessage(groupId: Long, msg: string | Msg, autoEscape: boolean = true): Promise<ISendGroupMsgResp | null> {
+  async sendGroupMessage(groupId: Long | string | number, msg: string | Msg, autoEscape: boolean = true): Promise<ISendGroupMsgResp | null> {
     if (typeof msg == 'string') {
       msg = Msg.builder().text(msg)
     }
     return await this.sendFrameAndWait({
       frameType: FrameType.TSendGroupMsgReq,
       sendGroupMsgReq: {
-        groupId: groupId,
+        groupId: toLong(groupId),
         message: msg.messageList,
         autoEscape: autoEscape,
       }
@@ -150,70 +151,70 @@ export class Bot {
       .catch(() => null)
   }
 
-  async setGroupKick(groupId: Long, userId: Long, rejectAddRequest: boolean): Promise<ISetGroupKickResp | null> {
+  async setGroupKick(groupId: Long | string | number, userId: Long | string | number, rejectAddRequest: boolean): Promise<ISetGroupKickResp | null> {
     return await this.sendFrameAndWait({
       frameType: FrameType.TSetGroupKickReq,
       setGroupKickReq: {
-        groupId: groupId,
-        userId: userId,
+        groupId: toLong(groupId),
+        userId: toLong(userId),
         rejectAddRequest: rejectAddRequest,
       }
     }).then(resp => resp.setGroupKickResp || null)
       .catch(() => null)
   }
 
-  async setGroupBan(groupId: Long, userId: Long, duration: number): Promise<ISetGroupBanResp | null> {
+  async setGroupBan(groupId: Long | string | number, userId: Long | string | number, duration: number): Promise<ISetGroupBanResp | null> {
     return await this.sendFrameAndWait({
       frameType: FrameType.TSetGroupBanReq,
       setGroupBanReq: {
-        groupId: groupId,
-        userId: userId,
+        groupId: toLong(groupId),
+        userId: toLong(userId),
         duration: duration,
       }
     }).then(resp => resp.setGroupBanResp || null)
       .catch(() => null)
   }
 
-  async setGroupWholeBan(groupId: Long, enable: boolean): Promise<ISetGroupWholeBanResp | null> {
+  async setGroupWholeBan(groupId: Long | string | number, enable: boolean): Promise<ISetGroupWholeBanResp | null> {
     return await this.sendFrameAndWait({
       frameType: FrameType.TSetGroupWholeBanReq,
       setGroupWholeBanReq: {
-        groupId: groupId,
+        groupId: toLong(groupId),
         enable: enable,
       }
     }).then(resp => resp.setGroupWholeBanResp || null)
       .catch(() => null)
   }
 
-  async setGroupCard(groupId: Long, userId: Long, card: string): Promise<ISetGroupCardResp | null> {
+  async setGroupCard(groupId: Long | string | number, userId: Long | string | number, card: string): Promise<ISetGroupCardResp | null> {
     return await this.sendFrameAndWait({
       frameType: FrameType.TSetGroupCardReq,
       setGroupCardReq: {
-        groupId: groupId,
-        userId: userId,
+        groupId: toLong(groupId),
+        userId: toLong(userId),
         card: card,
       }
     }).then(resp => resp.setGroupCardResp || null)
       .catch(() => null)
   }
 
-  async setGroupLeave(groupId: Long, isDismiss: boolean): Promise<ISetGroupLeaveResp | null> {
+  async setGroupLeave(groupId: Long | string | number, isDismiss: boolean): Promise<ISetGroupLeaveResp | null> {
     return await this.sendFrameAndWait({
       frameType: FrameType.TSetGroupLeaveReq,
       setGroupLeaveReq: {
-        groupId: groupId,
+        groupId: toLong(groupId),
         isDismiss: isDismiss,
       }
     }).then(resp => resp.setGroupLeaveResp || null)
       .catch(() => null)
   }
 
-  async setGroupSpecialTitle(groupId: Long, userId: Long, specialTitle: string, duration: number): Promise<ISetGroupSpecialTitleResp | null> {
+  async setGroupSpecialTitle(groupId: Long | string | number, userId: Long | string | number, specialTitle: string, duration: number): Promise<ISetGroupSpecialTitleResp | null> {
     return await this.sendFrameAndWait({
       frameType: FrameType.TSetGroupSpecialTitleReq,
       setGroupSpecialTitleReq: {
-        groupId: groupId,
-        userId: userId,
+        groupId: toLong(groupId),
+        userId: toLong(userId),
         specialTitle: specialTitle,
         duration: Long.fromNumber(duration),
       }
@@ -254,11 +255,11 @@ export class Bot {
       .catch(() => null)
   }
 
-  async getStrangerInfo(userId: Long): Promise<IGetStrangerInfoResp | null> {
+  async getStrangerInfo(userId: Long | string | number): Promise<IGetStrangerInfoResp | null> {
     return await this.sendFrameAndWait({
       frameType: FrameType.TGetStrangerInfoReq,
       getStrangerInfoReq: {
-        userId: userId,
+        userId: toLong(userId),
       }
     }).then(resp => resp.getStrangerInfoResp || null)
       .catch(() => null)
@@ -280,34 +281,34 @@ export class Bot {
       .catch(() => null)
   }
 
-  async getGroupInfo(groupId: Long, noCache: boolean = false): Promise<IGetGroupInfoResp | null> {
+  async getGroupInfo(groupId: Long | string | number, noCache: boolean = false): Promise<IGetGroupInfoResp | null> {
     return await this.sendFrameAndWait({
       frameType: FrameType.TGetGroupInfoReq,
       getGroupInfoReq: {
-        groupId: groupId,
+        groupId: toLong(groupId),
         noCache: noCache,
       }
     }).then(resp => resp.getGroupInfoResp || null)
       .catch(() => null)
   }
 
-  async getGroupMemberInfo(groupId: Long, userId: Long, noCache: boolean = false): Promise<IGetGroupMemberInfoResp | null> {
+  async getGroupMemberInfo(groupId: Long | string | number, userId: Long | string | number, noCache: boolean = false): Promise<IGetGroupMemberInfoResp | null> {
     return await this.sendFrameAndWait({
       frameType: FrameType.TGetGroupMemberInfoReq,
       getGroupMemberInfoReq: {
-        groupId: groupId,
-        userId: userId,
+        groupId: toLong(groupId),
+        userId: toLong(userId),
         noCache: noCache
       }
     }).then(resp => resp.getGroupMemberInfoResp || null)
       .catch(() => null)
   }
 
-  async getGroupMemberList(groupId: Long): Promise<IGetGroupMemberListResp | null> {
+  async getGroupMemberList(groupId: Long | string | number): Promise<IGetGroupMemberListResp | null> {
     return await this.sendFrameAndWait({
       frameType: FrameType.TGetGroupMemberListReq,
       getGroupMemberListReq: {
-        groupId: groupId,
+        groupId: toLong(groupId),
       }
     }).then(resp => resp.getGroupMemberListResp || null)
       .catch(() => null)
