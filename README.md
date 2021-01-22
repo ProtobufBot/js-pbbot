@@ -6,7 +6,7 @@
 
 代码
 ```javascript
-let {createBotWsServer, EventHandler, Msg} = require('js-pbbot')
+let {createBotServer, EventHandler, Msg} = require('js-pbbot')
 
 let port = 8081
 
@@ -24,11 +24,20 @@ EventHandler.handlePrivateMessage = async (bot, event) => {
   let rawMsg = event.rawMessage
   let userId = event.userId
   console.log(`收到私聊消息，发送者: ${userId.toString()}，内容: ${rawMsg}`)
-  let msg = Msg.builder().text("hello world")
-  await bot.sendPrivateMessage(event.userId, msg)
+  await bot.sendPrivateMessage(event.userId, "hello world")
 }
 
-createBotWsServer(port)
+EventHandler.handleGroupMessage = async (bot, event) => {
+  let rawMsg = event.rawMessage
+  let userId = event.userId
+  let groupId = event.groupId
+  console.log(`收到群聊消息，群号: ${groupId.toString()}，发送者: ${userId.toString()}，内容: ${rawMsg}`)
+  if (rawMsg !== "hello") return
+  let msg = Msg.builder().tts("hello world")
+  await bot.sendGroupMessage(groupId, msg)
+}
+
+createBotServer(port)
 
 console.log(`启动成功，端口：${port}`)
 ```
