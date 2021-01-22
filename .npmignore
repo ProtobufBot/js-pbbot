@@ -2,4 +2,4 @@ tsconfig.json
 .vscode
 .idea
 example
-tests
+node_modules

@@ -1,5 +1,7 @@
 let {createBotWsServer, EventHandler, Msg} = require('js-pbbot')
 
+let port = 8081
+
 console.log("开始启动")
 
 EventHandler.handleConnect = async (bot) => {
@@ -17,8 +19,6 @@ EventHandler.handlePrivateMessage = async (bot, event) => {
   let msg = Msg.builder().text("hello world")
   await bot.sendPrivateMessage(event.userId, msg)
 }
-
-let port = 8081
 
 createBotWsServer(port)
 
