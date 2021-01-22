@@ -25,11 +25,31 @@ export class Msg {
     return this
   }
 
+  tts(text: string): Msg {
+    this.messageList.push(new Message({
+      type: "tts",
+      data: {
+        "text": text
+      }
+    }))
+    return this
+  }
+
   at(qq: Long | string | number): Msg {
     this.messageList.push(new Message({
       type: "at",
       data: {
         "qq": toLong(qq).toString()
+      }
+    }))
+    return this
+  }
+
+  atAll(): Msg {
+    this.messageList.push(new Message({
+      type: "at",
+      data: {
+        "qq": "all"
       }
     }))
     return this
@@ -50,6 +70,16 @@ export class Msg {
       type: "image",
       data: {
         "url": url
+      }
+    }))
+    return this
+  }
+
+  reply(messageId: number): Msg {
+    this.messageList.push(new Message({
+      type: "reply",
+      data: {
+        "message_id": messageId.toString()
       }
     }))
     return this
