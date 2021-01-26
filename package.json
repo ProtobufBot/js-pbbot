@@ -1,6 +1,6 @@
 {
-  "name": "js-pbbot",
-  "version": "0.0.2",
+  "name": "pbbot",
+  "version": "0.0.1",
   "description": "JS/TS 开发QQ机器人",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
