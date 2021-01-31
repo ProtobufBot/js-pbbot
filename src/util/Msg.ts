@@ -3,9 +3,10 @@ import {Bot} from "../bot/Bot";
 import {onebot} from "../proto/proto";
 import Message = onebot.Message;
 import {toLong} from "./convertLong";
+import IMessage = onebot.IMessage;
 
 export class Msg {
-  public messageList: Message[]
+  public messageList: IMessage[]
 
   constructor() {
     this.messageList = []
@@ -80,6 +81,17 @@ export class Msg {
       type: "reply",
       data: {
         "message_id": messageId.toString()
+      }
+    }))
+    return this
+  }
+
+  gift(qq: Long | number | string, id: number): Msg {
+    this.messageList.push(new Message({
+      type: "gift",
+      data: {
+        "qq": qq.toString(),
+        "id": id.toString(),
       }
     }))
     return this
