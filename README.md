@@ -2,11 +2,11 @@
 
 创建nodejs项目
 
-安装`npm install js-pbbot`
+安装`npm install pbbot`
 
 代码
 ```javascript
-let {createBotServer, EventHandler, Msg} = require('js-pbbot')
+let {createBotServer, EventHandler, Msg} = require('pbbot')
 
 let port = 8081
 
