@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "js-pbbot": "file:.."
+    "pbbot": "file:.."
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

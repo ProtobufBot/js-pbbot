@@ -1,4 +1,4 @@
-let {createBotServer, EventHandler, Msg} = require('js-pbbot')
+let {createBotServer, EventHandler, Msg} = require('pbbot')
 
 let port = 8081
 
@@ -25,7 +25,7 @@ EventHandler.handleGroupMessage = async (bot, event) => {
   let groupId = event.groupId
   console.log(`收到群聊消息，群号: ${groupId.toString()}，发送者: ${userId.toString()}，内容: ${rawMsg}`)
   if (rawMsg !== "hello") return
-  let msg = Msg.builder().tts("hello world")
+  let msg = Msg.builder().gift(event.userId, 285)
   await bot.sendGroupMessage(groupId, msg)
 }
 
