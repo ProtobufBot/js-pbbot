@@ -40,35 +40,35 @@ export class EventHandler {
 
   }
 
-  static async handleGroupDecreaseNoticeEvent(bot: Bot, event: IGroupDecreaseNoticeEvent) {
+  static async handleGroupDecreaseNotice(bot: Bot, event: IGroupDecreaseNoticeEvent) {
 
   }
 
-  static async handleGroupIncreaseNoticeEvent(bot: Bot, event: IGroupIncreaseNoticeEvent) {
+  static async handleGroupIncreaseNotice(bot: Bot, event: IGroupIncreaseNoticeEvent) {
 
   }
 
-  static async handleGroupBanNoticeEvent(bot: Bot, event: IGroupBanNoticeEvent) {
+  static async handleGroupBanNotice(bot: Bot, event: IGroupBanNoticeEvent) {
 
   }
 
-  static async handleFriendAddNoticeEvent(bot: Bot, event: IFriendAddNoticeEvent) {
+  static async handleFriendAddNotice(bot: Bot, event: IFriendAddNoticeEvent) {
 
   }
 
-  static async handleGroupRecallNoticeEvent(bot: Bot, event: IGroupRecallNoticeEvent) {
+  static async handleGroupRecallNotice(bot: Bot, event: IGroupRecallNoticeEvent) {
 
   }
 
-  static async handleFriendRecallNoticeEvent(bot: Bot, event: IFriendRecallNoticeEvent) {
+  static async handleFriendRecallNotice(bot: Bot, event: IFriendRecallNoticeEvent) {
 
   }
 
-  static async handleFriendRequestEvent(bot: Bot, event: IFriendRequestEvent) {
+  static async handleFriendRequest(bot: Bot, event: IFriendRequestEvent) {
 
   }
 
-  static async handleGroupRequestEvent(bot: Bot, event: IGroupRequestEvent) {
+  static async handleGroupRequest(bot: Bot, event: IGroupRequestEvent) {
 
   }
 }
