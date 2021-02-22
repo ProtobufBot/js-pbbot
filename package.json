@@ -9,7 +9,15 @@
     "build:proto": "mkdir -p src/proto && npx pbjs -t static-module -w commonjs -o src/proto/proto.js  onebot_idl/onebot_frame.proto --force-long && npx pbts -o src/proto/proto.d.ts src/proto/proto.js",
     "build:protolib": "mkdir -p src/proto && npx pbts -o lib/proto/proto.d.ts src/proto/proto.js"
   },
-  "keywords": [],
+  "keywords": [
+    "bot",
+    "qqbot",
+    "cqhttp",
+    "protobufbot",
+    "pbbot",
+    "qqrobot",
+    "mirai"
+  ],
   "author": "lz1998 <875543533@qq.com>",
   "bugs": {
     "url": "https://github.com/ProtobufBot/js-pbbot/issues"
