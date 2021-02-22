@@ -36,6 +36,16 @@ export class Msg {
     return this
   }
 
+  record(url: string): Msg {
+    this.messageList.push(new Message({
+      type: "record",
+      data: {
+        "url": url
+      }
+    }))
+    return this
+  }
+
   at(qq: Long | string | number): Msg {
     this.messageList.push(new Message({
       type: "at",
@@ -66,6 +76,64 @@ export class Msg {
     return this
   }
 
+  flash(url: string): Msg {
+    this.messageList.push(new Message({
+      type: "image",
+      data: {
+        "url": url,
+        "type": "flash"
+      }
+    }))
+    return this
+  }
+
+  share(url: string, title: string, content: string, image: string): Msg {
+    this.messageList.push(new Message({
+      type: "share",
+      data: {
+        "url": url,
+        "title": title,
+        "content": content,
+        "image": image,
+      }
+    }))
+    return this
+  }
+
+  lightApp(content: string): Msg {
+    this.messageList.push(new Message(({
+      type: "light_app",
+      data: {
+        "content": content
+      }
+    })))
+    return this
+  }
+
+  xml(id: number, content: string): Msg {
+    this.messageList.push(new Message({
+      type: "service",
+      data: {
+        "sub_type": "xml",
+        "id": id.toString(),
+        "content": content
+      }
+    }))
+    return this
+  }
+
+  json(id: number, content: string): Msg {
+    this.messageList.push(new Message({
+      type: "service",
+      data: {
+        "sub_type": "json",
+        "id": id.toString(),
+        "content": content
+      }
+    }))
+    return this
+  }
+
   image(url: string): Msg {
     this.messageList.push(new Message({
       type: "image",
@@ -81,6 +149,32 @@ export class Msg {
       type: "reply",
       data: {
         "message_id": messageId.toString()
+      }
+    }))
+    return this
+  }
+
+  sleep(time: Long): Msg {
+    this.messageList.push(new Message({
+      type: "sleep",
+      data: {
+        "time": time.toString()
+      }
+    }))
+    return this
+  }
+
+  video(url: string, cover: string, cache: boolean): Msg {
+    let cacheValue = "0"
+    if (cache) {
+      cacheValue = "1"
+    }
+    this.messageList.push(new Message({
+      type: "video",
+      data: {
+        "url": url,
+        "cover": cover,
+        "cache": cacheValue
       }
     }))
     return this
