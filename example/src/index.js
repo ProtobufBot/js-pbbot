@@ -25,7 +25,7 @@ EventHandler.handleGroupMessage = async (bot, event) => {
   let groupId = event.groupId
   console.log(`收到群聊消息，群号: ${groupId.toString()}，发送者: ${userId.toString()}，内容: ${rawMsg}`)
   if (rawMsg !== "hello") return
-  let msg = Msg.builder().gift(event.userId, 285)
+  let msg = Msg.builder().show("https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",40005)
   await bot.sendGroupMessage(groupId, msg)
 }
 

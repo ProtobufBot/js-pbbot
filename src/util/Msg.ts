@@ -87,6 +87,18 @@ export class Msg {
     return this
   }
 
+  show(url: string, effectId: number = 40000): Msg {
+    this.messageList.push(new Message({
+      type: "image",
+      data: {
+        "url": url,
+        "type": "show",
+        "effect_id": effectId.toString()
+      }
+    }))
+    return this
+  }
+
   share(url: string, title: string, content: string, image: string): Msg {
     this.messageList.push(new Message({
       type: "share",
@@ -164,17 +176,13 @@ export class Msg {
     return this
   }
 
-  video(url: string, cover: string, cache: boolean): Msg {
-    let cacheValue = "0"
-    if (cache) {
-      cacheValue = "1"
-    }
+  video(url: string, cover: string, cache: boolean = true): Msg {
     this.messageList.push(new Message({
       type: "video",
       data: {
         "url": url,
         "cover": cover,
-        "cache": cacheValue
+        "cache": cache ? "1" : "0"
       }
     }))
     return this
