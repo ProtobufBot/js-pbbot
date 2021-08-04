@@ -199,6 +199,16 @@ export class Msg {
     return this
   }
 
+  poke(qq: Long | number | string): Msg {
+    this.messageList.push(new Message({
+      type: "poke",
+      data: {
+        "qq": qq.toString(),
+      }
+    }))
+    return this
+  }
+
   sendToGroup(bot: Bot, groupId: Long | string | number, autoEscape: boolean = true): Msg {
     bot.sendGroupMessage(toLong(groupId), this, autoEscape)
     return this
