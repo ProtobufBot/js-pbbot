@@ -66,6 +66,16 @@ export class Msg {
     return this
   }
 
+  dice(value: number): Msg {
+    this.messageList.push(new Message({
+      type: "dice",
+      data: {
+        "value": value.toString()
+      }
+    }))
+    return this
+  }
+
   face(id: number): Msg {
     this.messageList.push(new Message({
       type: "face",
